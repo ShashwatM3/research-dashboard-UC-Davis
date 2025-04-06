@@ -1,0 +1,28 @@
+.dashboard-main {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0
+    } to {
+        opacity: 1
+    }
+}
+
+.sign-in-register {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;  
+}
+
+.sign-in-register > p {
+  font-size: 13px;
+  width: 60%;
+}

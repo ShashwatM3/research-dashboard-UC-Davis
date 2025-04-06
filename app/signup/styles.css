@@ -1,0 +1,59 @@
+.page-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* From Uiverse.io by Yaya12085 */ 
+.button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px 10px 10px;
+  font-size: 12px;
+  font-weight: 400;
+  gap: 10px;
+  border: 1px solid rgb(213, 213, 213);
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all .6s ease;
+}
+
+.button svg {
+  height: 18px;
+}
+
+button:hover {
+  transform: scale(1.02);
+}
+
+.page-main > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.page-main > div > h1 {
+  font-size: 2.5vh;
+  font-weight: 700;
+}
+
+.page-main > div > h3 {
+  font-size: 1.8vh;
+  margin-bottom: 5px;
+}
+
+.page-main > div > p {
+  font-size: 15px;
+  margin-bottom: 10px;
+  opacity: 50%;
+}
+
+.page-main > div > a {
+  font-size: 12px;
+  border-bottom: 1px solid black;
+}
