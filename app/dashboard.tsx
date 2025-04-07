@@ -10,14 +10,14 @@ import "./dashboard.css";
 import { createContext, useContext, useState } from 'react';
 import mockProfessors from "./mockData";
 
-const DashboardContext = createContext<any>(null);
+const DashboardContext = createContext({});
 
 function Dashboard() {
   const router = useRouter();
   const [userCreds, setUserCreds] = useState(null);
   const [searchQuery, setQuery] = useState("")
   useEffect(() => {
-    var creds = localStorage.getItem("RESEARCH DASHBOARD UC DAVIS CREDENTIALS")
+    let creds = localStorage.getItem("RESEARCH DASHBOARD UC DAVIS CREDENTIALS")
     if(creds) {
       router.push("/");
       setUserCreds(JSON.parse(creds))
