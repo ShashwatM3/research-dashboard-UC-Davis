@@ -17,12 +17,12 @@ function Dashboard() {
   const [userCreds, setUserCreds] = useState(null);
   const [searchQuery, setQuery] = useState("")
   useEffect(() => {
-    let creds = localStorage.getItem("RESEARCH DASHBOARD UC DAVIS CREDENTIALS")
-    if(creds) {
+    const creds = localStorage.getItem("RESEARCH DASHBOARD UC DAVIS CREDENTIALS");
+    if (creds) {
       router.push("/");
-      setUserCreds(JSON.parse(creds))
+      setUserCreds(JSON.parse(creds));
     }
-  }, [router])
+  }, [router]);
   // const navigate = useNavigate();
   // const [searchResults, setSearchResults] = useState<Professor[]>([]);
   // const [hasSearched, setHasSearched] = useState(false);
