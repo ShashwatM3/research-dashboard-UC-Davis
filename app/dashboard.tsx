@@ -10,104 +10,109 @@ import "./dashboard.css";
 import { createContext, useContext, useState } from 'react';
 import mockProfessors from "./mockData";
 
-const DashboardContext = createContext({});
+type UserCredsType = {
+  username: string;
+  email: string,
+  password: string,
+};
+
+type DashboardContextType = {
+  userCreds: UserCredsType | null;
+  searchQuery: string;
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+};
+
+const DashboardContext = createContext<DashboardContextType | undefined>(undefined);
+
+function useDashboardContext() {
+  const context = useContext(DashboardContext);
+  if (!context) {
+    throw new Error("useDashboardContext must be used within a DashboardContext.Provider");
+  }
+  return context;
+}
 
 function Dashboard() {
   const router = useRouter();
-  const [userCreds, setUserCreds] = useState(null);
-  const [searchQuery, setQuery] = useState("")
+  const [userCreds, setUserCreds] = useState<UserCredsType | null>(null);
+  const [searchQuery, setQuery] = useState<string>("");
+
   useEffect(() => {
     const creds = localStorage.getItem("RESEARCH DASHBOARD UC DAVIS CREDENTIALS");
     if (creds) {
+      const parsedCreds = JSON.parse(creds);
+      setUserCreds(parsedCreds);
       router.push("/");
-      setUserCreds(JSON.parse(creds));
     }
   }, [router]);
-  // const navigate = useNavigate();
-  // const [searchResults, setSearchResults] = useState<Professor[]>([]);
-  // const [hasSearched, setHasSearched] = useState(false);
 
-  // const handleSearch = (query: string) => {
-  //   // const results = professors.filter((professor) =>
-  //   //   prof.researchInterests.some((interest) =>
-  //   //     interest.toLowerCase().includes(query.toLowerCase())
-  //   //   ) || 
-  //   //   (prof.major && prof.major.toLowerCase().includes(query.toLowerCase()))
-  //   // );
-  //   // setSearchResults(results);
-  //   // setHasSearched(true);
-  //   // navigate("/professors", { state: { searchQuery: query } });
-  // };
   return (
     <>
-    <div id='searchboard'>
-      <DashboardContext.Provider value={{userCreds, searchQuery, setQuery}}>
-        <SearchBoard/>
-      </DashboardContext.Provider>
-    </div>
-    <div id="dashboard-main" className="dashboard-main min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
-      <div className="container mx-auto px-4 py-16 max-w-4xl animate-fade-in">
-        <div className="text-center mb-12">
-          <h1 className="text-5xl font-semibold text-gray-900 mb-4">
-            Let&apos;s Do Research
-          </h1>
-          <p className="text-xl text-gray-600 mb-12">
-            Get started on your research journey!
-          </p>
-          <div className='flex items-center justify-center gap-0'>
-          <Input id="first-input" className='w-[70%] rounded-r-none' placeholder='Enter research interest/subject' />
-          <Button className='rounded-l-none' onClick={() => {
-            const input = document.getElementById("first-input") as HTMLInputElement;
-            const searchboard = document.getElementById("searchboard");
-            if (input && searchboard) {
-              setQuery(input.value);
-              searchboard.style.display = "block";
-            }
-            const dash = document.getElementById("dashboard-main");
-            if (input && dash) {
-              dash.style.display = "none";
-            }
-          }}>Search</Button>
-          </div>
-          <div className='buttons-display mt-4 flex items-center justify-center gap-4'>
-            <button className='px-4 py-2 border border-solid rounded-sm'>Economics</button>
-            <button className='px-4 py-2 border border-solid rounded-sm'>Quantitative Analysis</button>
-            <button className='px-4 py-2 border border-solid rounded-sm'>Computer Vision</button>
-            <button className='px-4 py-2 border border-solid rounded-sm'>Biology</button>
+      <div id='searchboard'>
+        <DashboardContext.Provider value={{ userCreds, searchQuery, setQuery }}>
+          <SearchBoard />
+        </DashboardContext.Provider>
+      </div>
+      <div id="dashboard-main" className="dashboard-main min-h-screen bg-gradient-to-b from-gray-50 to-white flex items-center justify-center">
+        <div className="container mx-auto px-4 py-16 max-w-4xl animate-fade-in">
+          <div className="text-center mb-12">
+            <h1 className="text-5xl font-semibold text-gray-900 mb-4">Let&apos;s Do Research</h1>
+            <p className="text-xl text-gray-600 mb-12">Get started on your research journey!</p>
+
+            <div className='flex items-center justify-center gap-0'>
+              <Input id="first-input" className='w-[70%] rounded-r-none' placeholder='Enter research interest/subject' />
+              <Button className='rounded-l-none' onClick={() => {
+                const input = document.getElementById("first-input") as HTMLInputElement;
+                const searchboard = document.getElementById("searchboard");
+                if (input && searchboard) {
+                  setQuery(input.value);
+                  searchboard.style.display = "block";
+                }
+                const dash = document.getElementById("dashboard-main");
+                if (input && dash) {
+                  dash.style.display = "none";
+                }
+              }}>Search</Button>
+            </div>
+
+            <div className='buttons-display mt-4 flex items-center justify-center gap-4'>
+              <button className='px-4 py-2 border border-solid rounded-sm'>Economics</button>
+              <button className='px-4 py-2 border border-solid rounded-sm'>Quantitative Analysis</button>
+              <button className='px-4 py-2 border border-solid rounded-sm'>Computer Vision</button>
+              <button className='px-4 py-2 border border-solid rounded-sm'>Biology</button>
+            </div>
           </div>
         </div>
-        
-        {/* <SearchBar onSearch={handleSearch} />
-        {/* <InfiniteScroll onInterestClick={handleSearch} /> */}
-      </div>
-      <div className='sign-in-register'>
-        { userCreds ? <h1>{userCreds.username} Research Dashboard</h1>:
-        <>
-        <div className='flex gap-2'>
-          <Button>Login</Button>
-          <Button onClick={() => {window.open('/signup', '_self')}} variant={"outline"}>Register</Button>
+
+        <div className='sign-in-register'>
+          {userCreds ? (
+            <h1>{userCreds.username} Research Dashboard</h1>
+          ) : (
+            <>
+              <div className='flex gap-2'>
+                <Button>Login</Button>
+                <Button onClick={() => { window.open('/signup', '_self') }} variant={"outline"}>Register</Button>
+              </div>
+              <p>Make an account or login to save professors and access more tools</p>
+            </>
+          )}
         </div>
-        <p>Make an account or login to save professors and access more tools</p></>
-        }
       </div>
-    </div>
     </>
-  )
+  );
 }
 
 export default Dashboard
 
+
 function SearchBoard() {
-  const { userCreds, searchQuery, setQuery } = useContext(DashboardContext);
+  const { userCreds, searchQuery, setQuery } = useDashboardContext();
 
   const filteredResults = mockProfessors.filter((prof) =>
-    (
-      prof.researchInterests.some((interest) =>
-        interest.toLowerCase().includes(searchQuery.toLowerCase())
-      )
-      ||
-      prof.major.toLowerCase() == searchQuery.toLowerCase()
-    )
+    prof.researchInterests.some((interest) =>
+      interest.toLowerCase().includes(searchQuery.toLowerCase())
+    ) ||
+    prof.major.toLowerCase() === searchQuery.toLowerCase()
   );
 
   return (
