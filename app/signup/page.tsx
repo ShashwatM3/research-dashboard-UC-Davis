@@ -1,17 +1,105 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import "./styles.css"
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
+import Link from 'next/link';
+import {db} from "@/firebase"
+import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { useRouter } from 'next/navigation'
+// import {updateDoc, doc } from 'firebase/firestore'
 
 function Page() {
+  const router = useRouter();
+  async function finalSignup() {
+    const passInput = document.getElementById("password-signup") as HTMLInputElement;
+    const emailInput = document.getElementById("email-signup") as HTMLInputElement;
+    const userNameInput = document.getElementById("username-signup") as HTMLInputElement;
+    const username = userNameInput?.value;
+    const pass = passInput?.value;
+    const email = emailInput?.value;
+
+    await setDoc(doc(db, "users", `${email}`), {
+      email: email,
+      password: pass,
+      username: username
+    });
+
+    localStorage.setItem("RESEARCH DASHBOARD UC DAVIS CREDENTIALS", JSON.stringify({
+      email: email,
+      password: pass,
+      username: username
+    }));
+
+    router.push("/");
+    // const washingtonRef = doc(db, "users", "DC");
+
+    // await updateDoc(washingtonRef, {
+    //   capital: true
+    // });    
+  }
+  const emailCheck = () => {
+    const emailInput = document.getElementById("email-signup") as HTMLInputElement;
+    const email = emailInput?.value;
+    if(String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      )) {
+        if(email.split("@")[1] === "ucdavis.edu") {
+          const titleEmail = document.getElementById("title-email");
+          if (titleEmail) {
+            titleEmail.style.display = "none";
+          }
+          const inputEmail = document.getElementById("email-signup");
+          if (inputEmail) {
+            inputEmail.style.display = "none";
+          }
+          const titlePassword = document.getElementById("title-password");
+          if (titlePassword) {
+            titlePassword.style.display = "block";
+          }
+          const inputPassword = document.getElementById("password-signup");
+          if (inputPassword) {
+            inputPassword.style.display = "block";
+          }
+          const titleUsername = document.getElementById("title-username");
+          if (titleUsername) {
+            titleUsername.style.display = "block";
+          }
+          const inputUsername = document.getElementById("username-signup");
+          if (inputUsername) {
+            inputUsername.style.display = "block";
+          }
+          const buttonEmail = document.getElementById("button1");
+          if (buttonEmail) {
+            buttonEmail.style.display = "none";
+          }
+          const buttonPassword = document.getElementById("button2");
+          if (buttonPassword) {
+            buttonPassword.style.display = "block";
+          }
+        } else {
+          alert("You must be a UC Davis Student to get access to this portal!")
+        }
+      } else {
+        alert("Invalid Email Address")
+      }
+  };
+
   return (
     <div className='page-main'>
       <div>
         <h1>Create an account</h1>
-        <h3>Enter your email to sign up for this tool</h3>
-        <Input placeholder='email@domain.com'/>
-        <Button style={{width: "100%", marginBottom: "10px"}}>Sign up with email</Button>
+        <h3 id="title-email">Enter your email to sign up for this tool</h3>
+        <Input id="email-signup" placeholder='email@domain.com'/>
+        <Button id="button1" onClick={emailCheck} style={{width: "100%", marginBottom: "10px", cursor: "pointer"}}>Sign up with email</Button>
+        <h3 id="title-password">Enter your password to sign up for this tool</h3>
+        <Input id="password-signup" type='password' placeholder="Your Password"/>
+        <h3 id="title-username">Your Preferred Username</h3>
+        <Input id="username-signup" type='password' placeholder="What should we call you?"/>
+        <Button id="button2" onClick={finalSignup} style={{width: "100%", marginBottom: "10px", cursor: "pointer"}}>Sign up</Button>
         <p>or continue with</p>
         <button className="button">
           <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 262">

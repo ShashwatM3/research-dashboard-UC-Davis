@@ -26,3 +26,40 @@
   font-size: 13px;
   width: 60%;
 }
+
+.buttons-display > button {
+  transition: 0.2s ease-in-out;
+}
+
+.buttons-display > button:hover {
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+#searchboard {
+  display: none;
+}
+
+.main-searchboard {
+  padding: 30px;
+}
+
+.professor-detail-page {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left:0;
+  display: none;
+  background: white;
+  z-index:1;
+  border-left: 1px solid black;
+  /* align-items: center; */
+  justify-content: center;
+  overflow: scroll;
+}
+
+.professor-detail-page > div {
+  width: 65%;
+}

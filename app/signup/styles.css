@@ -57,3 +57,11 @@ button:hover {
   font-size: 12px;
   border-bottom: 1px solid black;
 }
+
+#title-password, #password-signup, #title-username, #username-signup {
+  display: none;
+}
+
+#button2 {
+  display: none;
+}
