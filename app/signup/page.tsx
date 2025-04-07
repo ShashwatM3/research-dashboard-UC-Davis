@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link';
 import {db} from "@/firebase"
-import { collection, addDoc, setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc } from 'firebase/firestore';
 import { useRouter } from 'next/navigation'
 // import {updateDoc, doc } from 'firebase/firestore'
 

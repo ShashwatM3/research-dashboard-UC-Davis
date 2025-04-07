@@ -9,14 +9,6 @@ import { Button } from "@/components/ui/button"
 import "./dashboard.css";
 import { createContext, useContext, useState } from 'react';
 import mockProfessors from "./mockData";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 
 const DashboardContext = createContext<any>(null);
 
@@ -30,7 +22,7 @@ function Dashboard() {
       router.push("/");
       setUserCreds(JSON.parse(creds))
     }
-  }, [])
+  }, [router])
   // const navigate = useNavigate();
   // const [searchResults, setSearchResults] = useState<Professor[]>([]);
   // const [hasSearched, setHasSearched] = useState(false);
@@ -136,7 +128,6 @@ function SearchBoard() {
         <Input
           placeholder='Enter research interest/subject'
           defaultValue={searchQuery}
-          onChange={(e) => {}}
           id="searchQuery"
         />
         <Button onClick={() => {
