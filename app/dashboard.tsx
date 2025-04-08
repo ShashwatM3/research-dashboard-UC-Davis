@@ -156,12 +156,6 @@ function SearchBoard() {
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
-
   // useEffect(() => {
   //   if (typeof window !== 'undefined') {
   //     const handleScroll = () => {
@@ -186,7 +180,7 @@ function SearchBoard() {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const handleScroll = () => {
-        let scrolledDistance = window.scrollY;
+        const scrolledDistance = window.scrollY;
         console.log('Scrolled distance:', scrolledDistance, 'pixels');
         const navF = document.getElementById("nav-fix");
         if (scrolledDistance <= 15.5) {
