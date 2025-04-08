@@ -63,3 +63,57 @@
 .professor-detail-page > div {
   width: 65%;
 }
+
+#nav {
+  display: flex; 
+  margin-bottom: 1rem; 
+  justify-content: space-between; 
+  align-items: center;
+}
+
+#nav-fix {
+  display: none; 
+  margin-bottom: 1rem; 
+  justify-content: space-between; 
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  top:0;
+  left:0;
+  background: white;
+  z-index: 1;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+}
+
+#nav-fix > div {
+  margin-top: 2rem; 
+  display: flex; 
+  margin-bottom: 2rem; 
+  justify-content: space-between; 
+  width: 90%;
+  align-items: center;
+}
+
+#nav > div > div > h1 {
+  font-size: 2.5vh;
+}
+
+#nav-fix > div > div > div > h1 {
+  font-size: 2.5vh;
+}
+
+#card-view {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+
+#toggle-and-results {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center; 
+}
