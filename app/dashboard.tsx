@@ -143,18 +143,18 @@ function SearchBoard() {
     prof.major.toLowerCase() === searchQuery.toLowerCase()
   );
 
-  const handleSearch = () => {
-    const input = document.getElementById("first-input") as HTMLInputElement;
-    const searchboard = document.getElementById("searchboard");
-    if (input && searchboard) {
-      setQuery(input.value);
-      searchboard.style.display = "block";
-    }
-    const dash = document.getElementById("dashboard-main");
-    if (input && dash) {
-      dash.style.display = "none";
-    }
-  };
+  // const handleSearch = () => {
+  //   const input = document.getElementById("first-input") as HTMLInputElement;
+  //   const searchboard = document.getElementById("searchboard");
+  //   if (input && searchboard) {
+  //     setQuery(input.value);
+  //     searchboard.style.display = "block";
+  //   }
+  //   const dash = document.getElementById("dashboard-main");
+  //   if (input && dash) {
+  //     dash.style.display = "none";
+  //   }
+  // };
 
   // useEffect(() => {
   //   if (typeof window !== 'undefined') {
