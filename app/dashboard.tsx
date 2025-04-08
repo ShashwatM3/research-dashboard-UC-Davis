@@ -106,6 +106,7 @@ export default Dashboard
 
 
 function SearchBoard() {
+  const router = useRouter();
   const { userCreds, searchQuery, setQuery } = useDashboardContext();
 
   const filteredResults = mockProfessors.filter((prof) =>
@@ -122,12 +123,24 @@ function SearchBoard() {
           <h1 className="text-3xl font-semibold text-gray-900">
             Let&apos;s Do Research
           </h1>
-          <h3 className='text-gray-600'>{userCreds?.username}'s Research Dashboard</h3>
+          {
+            userCreds ? 
+            <h3 className='text-gray-600'>{userCreds?.username}'s Research Dashboard</h3>
+            :
+            <h3 className='text-gray-600 mt-2'>Make an account to save professors and access more tools</h3>
+          }
         </div>
-        <div className='flex items-center gap-2'>
-          <Button>Your Profile</Button>
-          <Button variant="outline">Saved Items</Button>
-        </div>
+        {userCreds ? 
+          <div className='flex items-center gap-2'>
+            <Button>Your Profile</Button>
+            <Button variant="outline">Saved Items</Button>
+          </div>
+          :
+          <div className='flex items-center gap-2'>
+            <Button>Login</Button>
+            <Button onClick={() => {router.push("/signup")}} variant="outline">Register</Button>
+          </div>
+        }
       </div>
       <div className='flex gap-2 w-full mb-6'>
         <Input
