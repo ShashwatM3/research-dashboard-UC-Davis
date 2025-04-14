@@ -1,7 +1,7 @@
 import React from 'react'
 import "./homepagestyles.css";
 import { Button } from '@/components/ui/button';
-import ucd from "@/media/ucd.jpg"
+// import ucd from "@/media/ucd.jpg"
 // import Image from 'next/image';
 // import {
 //   Carousel,
