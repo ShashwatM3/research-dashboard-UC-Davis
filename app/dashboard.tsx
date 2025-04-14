@@ -15,13 +15,13 @@ import like from '@/app/icons/like.svg';
 import profile from '@/app/icons/profile.svg';
 import Image from 'next/image';
 import { toast } from "sonner";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+// } from "@/components/ui/carousel"
 import { Card, CardContent } from "@/components/ui/card"
 
 type UserCredsType = {
@@ -315,7 +315,7 @@ function SearchBoard() {
             }} variant={"secondary"} id="button-view" className='text-sm cursor-pointer'>Card view</Button>
           </div>
           <div id="card-view">
-          <Carousel className="w-[70%]">
+          {/* <Carousel className="w-[70%]">
             <CarouselContent>
               {filteredResults.map((prof, idx) => (
                 <CarouselItem key={idx}>
@@ -364,7 +364,7 @@ function SearchBoard() {
             </CarouselContent>
             <CarouselPrevious />
             <CarouselNext />
-          </Carousel>
+          </Carousel> */}
           </div>
           <div id="normal-view">
             {filteredResults.length > 0 ? (
