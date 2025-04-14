@@ -22,7 +22,7 @@ import { toast } from "sonner";
 //   CarouselNext,
 //   CarouselPrevious,
 // } from "@/components/ui/carousel"
-import { Card, CardContent } from "@/components/ui/card"
+// import { Card, CardContent } from "@/components/ui/card"
 
 type UserCredsType = {
   username: string;
