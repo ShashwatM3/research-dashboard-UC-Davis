@@ -2,21 +2,21 @@ import React from 'react'
 import "./homepagestyles.css";
 import { Button } from '@/components/ui/button';
 import ucd from "@/media/ucd.jpg"
-import Image from 'next/image';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+// import Image from 'next/image';
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+// } from "@/components/ui/carousel"
 
 function Banner() {
-  const images = [
-    { src: ucd, alt: "UC Davis Campus" },
-    { src: ucd, alt: "UC Davis Research" },
-    { src: ucd, alt: "UC Davis Labs" },
-  ];
+  // const images = [
+  //   { src: ucd, alt: "UC Davis Campus" },
+  //   { src: ucd, alt: "UC Davis Research" },
+  //   { src: ucd, alt: "UC Davis Labs" },
+  // ];
   return (
     <div>
       <div className='banner'>

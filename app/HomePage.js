@@ -1,15 +1,15 @@
 import React from 'react'
 import "./homepagestyles.css";
-import { Button } from '@/components/ui/button';
-import ucd from "@/media/ucd.jpg"
-import Image from 'next/image';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel"
+// import { Button } from '@/components/ui/button';
+// import ucd from "@/media/ucd.jpg"
+// import Image from 'next/image';
+// import {
+//   Carousel,
+//   CarouselContent,
+//   CarouselItem,
+//   CarouselNext,
+//   CarouselPrevious,
+// } from "@/components/ui/carousel"
 import Banner from "./Banner"
 import TheDemand from "./TheDemand"
 import WhatWeOffer from "./WhatWeOffer";
